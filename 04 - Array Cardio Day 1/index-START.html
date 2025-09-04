@@ -38,28 +38,70 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const z = inventors.filter(item => item.year<1600 && item.year>1499);
+    console.table(z);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const firstlast = inventors.map(item => item.first+item.last );
+    console.table(firstlast);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    const ordered = inventors.sort((a,b) => a.year<b.year?-1:1);
+    console.table(ordered);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const aye = inventors.reduce((total,item) =>     {
+      return total+item.passed- item.year;    },0);
+    console.log( "lived "+aye);
 
     // 5. Sort the inventors by years lived
+        const order = inventors.sort((a,b) =>{
+          if(a.passed - a.year> b.passed - b.year){
+            return -1;
+          }
+          else if(a.passed-a.year<b.passed-b.year)
+          {
+            return 1;
+          }
+          else{
+            return 0;
+          }
+        } );
+    console.table(order);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+// const cat= document.querySelector('.mw-category');
+// const links = Array.from(cat.querySelectorAll('a'));
+// const de = links.map(link=> link.textContent).filter(
+//   nam => nam.includes('de'));
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+const stpp = people.sort( (a,b) =>
+{
+ const [al, af] = a.split(', ');
+const[ bl, bf] = b.split(', ');
+return al >bl ? 1:-1;
+}
+);
 
+console.log(stpp);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+  const trans =   data.reduce( (obj, curr) =>
+{
+  if(!obj[curr]){ obj[curr] =0;}
+  obj[curr]++;
+  return obj;
+}
+
+  ,{} );
+console.log(trans);
 
   </script>
 </body>
